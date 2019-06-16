@@ -6,7 +6,6 @@ int get_positive_int(string prompt);
 int main(void)
 {
     int height = get_positive_int("Height: ");
-    printf("Stored: %i\n", height);
     for (int i = 0; i < height; i++)
     {
         for (int j = 1; j < height - i ; j++)
