@@ -1,3 +1,5 @@
+// Problem Set 1, Mario less comfortable, 17 June 2019
+
 #include <cs50.h>
 #include <stdio.h>
 
@@ -8,6 +10,7 @@ int main(void)
     int height = get_positive_int("Height: ");
     for (int i = 0; i < height; i++)
     {
+        // Push hashes to the right
         for (int j = 1; j < height - i ; j++)
         {
             printf(" ");
@@ -20,6 +23,7 @@ int main(void)
     }     
 }
 
+// Prompt user for positive integer
 int get_positive_int(string prompt)
 {
     int n;
