@@ -4,13 +4,10 @@
 
 int main(void)
 {
-    long number = get_long("Number: ");
-    
+    long number = get_long("Number: ");    
     int digit = 0;
-    int mod;
-    int mod_mod;
+    int mod, mod_mod, first2dg;
     int checksum = 0;
-    int first2dg;
     while (number >= 1)
     {
         mod = number % 10; 
@@ -56,10 +53,6 @@ int main(void)
         else if ((digit == 13 || digit == 16) && 40 <= first2dg && first2dg<= 49)
         {
             printf("VISA\n");
-        }
-        else 
-        {
-            printf("INVALID\n");
         }
     }
     else 
