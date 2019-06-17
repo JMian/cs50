@@ -1,3 +1,5 @@
+// Problem Set 1, Credit, 17 June 2019
+
 #include <stdio.h>
 #include <cs50.h>
 #include <math.h>
@@ -34,7 +36,7 @@ int main(void)
         {
             checksum += mod;
         }
-        // Check the first two digits of the number
+        // Record the first two digits of the number
         if (10 <= number && number < 100)
         {
             first2dg = number;
@@ -46,11 +48,11 @@ int main(void)
         {
             printf("AMEX\n");
         }
-        else if (digit == 16 && 51 <= first2dg && first2dg <= 55)
+        if (digit == 16 && 51 <= first2dg && first2dg <= 55)
         {
             printf("MASTERCARD\n");
         }
-        else if ((digit == 13 || digit == 16) && 40 <= first2dg && first2dg<= 49)
+        if ((digit == 13 || digit == 16) && 40 <= first2dg && first2dg<= 49)
         {
             printf("VISA\n");
         }
