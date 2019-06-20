@@ -1,0 +1,9 @@
+One command-line argument (int, the key)
+If the user input argument was not an (positive?) int, remind the user
+Prompt user for plaintext
+Print ciphertext
+  Iterate over each character of the plaintext
+    if uppercase, rotate it and preserve case, print out the rotated character
+    if lowercase, rotate it and preserve case, print out the rotated character
+    if neither, print out the original character
+Print a newline
