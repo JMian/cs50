@@ -27,27 +27,15 @@ int main(int argc, string argv[])
     printf("ciphertext: ");
     for (int i = 0, n = strlen(ptx); i < n; i++)
     {
-        // If uppercase letters
+        // If uppercase letters, or use isupper(ptx[i])
         if (65 <= ptx[i] && ptx[i] <= 90)
         {
-            ptx[i] += key;
-            // If > Z
-            if (ptx[i] > 90)
-            {
-                ptx[i] = ptx[i] % 90 + 64;
-            }
-            printf("%c", ptx[i]);
+            printf("%c", (ptx[i] - 65 + key) % 26 + 65);
         }
-        // If lowercase letters
+        // If lowercase letters, or use islower(ptx[i])
         else if (97 <= ptx[i] && ptx[i] <= 122)
         {
-            ptx[i] += key;
-            // If > z
-            if (ptx[i] > 122)
-            {
-                ptx[i] = ptx[i] % 122 + 96;
-            }
-            printf("%c", ptx[i]);
+            printf("%c", (ptx[i] - 97 + key) % 26 + 97);
         }
         // If is not alphabet
         else
@@ -57,7 +45,6 @@ int main(int argc, string argv[])
     }
     printf("\n");
 }
-
 
 // Check if the whole string is composed of digits
 bool alldigits(string s)
