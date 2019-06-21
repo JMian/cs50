@@ -4,10 +4,8 @@
 #include <stdio.h>
 #include <crypt.h>
 #include <string.h>
-#include <ctype.h>
+#include <unistd.h>
 
-string getsalt(string s);
-bool checkhash(string pw2, string salt, string myhash, string hash);
 int main(int argc, string argv[])
 {
     // Check command line argument
@@ -17,89 +15,36 @@ int main(int argc, string argv[])
         return 1;
     }
     string hash = argv[1];
-    string salt = getsalt(hash); 
-    string myhash = "";
-    int cmp = 1;
-    char pw2[6];
-    pw2[5] = '\0';
-    for (int i = 0; i < 58; i++)
+    char salt[3] = {hash[0], hash[1], '\0'};
+    char pw[6] = "\0\0\0\0\0\0";
+    string pwlist = "\0abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for (int fifth = 0; fifth < 53; fifth++)
     {
-        pw2[1] = '\0', pw2[2] = '\0', pw2[3] = '\0', pw2[4] = '\0';
-        pw2[0] = 65 + i;
-        bool check = checkhash(pw2, salt, myhash, hash);
-        if (check == true)
+        for (int fourth = 0; fourth < 53; fourth++)
         {
-            return 0;
-        }     
-        for (int j = 0; j < 58; j++)
-        {
-            pw2[2] = '\0', pw2[3] = '\0', pw2[4] = '\0';
-            pw2[1] = 65 + j;
-            check = checkhash(pw2, salt, myhash, hash);
-            if (check == true)
+            for (int third = 0; third < 53; third++)
             {
-                return 0;
-            }
-            for (int k = 0; k < 58; k++)
-            {
-                pw2[3] = '\0', pw2[4] = '\0';
-                pw2[2] = 65 + k;
-                check = checkhash(pw2, salt, myhash, hash);
-                if (check == true)
+                for (int second = 0; second < 53; second++)
                 {
-                    return 0;
-                }                
-                for (int l = 0; l < 58; l++)
-                {
-                    pw2[4] = '\0';
-                    pw2[3] = 65 + l;
-                    check = checkhash(pw2, salt, myhash, hash);
-                    if (check == true)
+                    for (int first = 1; first < 53; first++)
                     {
-                        return 0;
-                    }
-                    for (int m = 0; m < 58; m++)
-                    {               
-                        pw2[4] = 65 + m;
-                        check = checkhash(pw2, salt, myhash, hash);
-                        if (check == true)
+                        pw[0] = pwlist[first];
+                        pw[1] = pwlist[second];
+                        pw[2] = pwlist[third];
+                        pw[3] = pwlist[fourth];
+                        pw[4] = pwlist[fifth];
+                        if (strcmp(crypt(pw, salt), hash) == 0)
                         {
+                            printf("%s\n", pw);
                             return 0;
                         }
                     }
+                     
                 }
             }
         }
-    }        
+    }
+    printf("Password cannot be cracked at this time\n");
 }
 
 
-// Get the first two characters(salt) from the input hash
-string getsalt(string s)
-{
-    // Why static?
-    static char gs[2] = "";
-    for (int i = 0; i < 2; i++)
-    {
-        gs[i] = s[i];
-    }
-    return gs;
-}
-
-// Check if the current hash resulted is same as the input hash 
-bool checkhash(string pw2, string salt, string myhash, string hash)
-{
-
-    myhash = crypt(pw2, salt); 
-    int cmp = strcmp(myhash, hash);
-    if (cmp == 0)
-    {       
-        printf("%s\n", pw2);
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-    
-}
