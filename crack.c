@@ -1,5 +1,6 @@
 // Problem Set 2, Crack, 21 June 2019
-// Have to review and rewrite code
+// This was not my own work
+// This version was seen from the internet, just to remind myself and for revision
 #include <cs50.h>
 #include <stdio.h>
 #include <crypt.h>
