@@ -43,7 +43,7 @@ Because BITMAPFILEHEADER, BITMAPINFOHEADER, and RGBTRIPLE are themselves each ty
 
 ## What value does `copy.c` assign to `padding` if `bi.biWidth` is `3`?
 
--1
+3
 
 ## What does `fseek` do?
 
