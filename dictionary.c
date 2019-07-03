@@ -124,7 +124,7 @@ bool check(const char *word)
         
         if (root2 == NULL)
         {
-           return false;
+            return false;
         }
     }
     if (root2->is_word)
@@ -136,7 +136,7 @@ bool check(const char *word)
 }
 
 
-void clear(node* root2)
+void clear(node *root2)
 {
     for (int i = 0; i < N; i++)
     {
