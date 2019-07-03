@@ -1,48 +1,44 @@
-// Problem set 4, Speller, Hashtable, 1 July 2019
-
+// Problem set 4, Speller, Tries, 3 July 2019
 // Implements a dictionary's functionality
 
-#include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <strings.h>
+#include <ctype.h>
 
 #include "dictionary.h"
 
-// Represents number of buckets in a hash table
-#define N 26
+// Represents number of children for each node in a trie
+#define N 27
 
-// Represents a node in a hash table
+// Represents a node in a trie
 typedef struct node
 {
-    char word[LENGTH + 1];
-    struct node *next;
+    bool is_word;
+    struct node *children[N];
 }
 node;
 
-// Represents a hash table
-node *hashtable[N];
+// Represents a trie
+node *root;
 
 unsigned int counter_size = 0;
-
-// Hashes word to a number between 0 and 25, inclusive, based on its first letter
-unsigned int hash(const char *word)
-{
-    return tolower(word[0]) - 'a';
-}
-
 bool loaded = false;
 
 // Loads dictionary into memory, returning true if successful else false
 bool load(const char *dictionary)
 {
-    // Initialize hash table
-    for (int i = 0; i < N; i++)
+    // Initialize trie
+    // If use malloc instead, has to use for loop to initialize every root->children[N] to NULL
+    root = calloc(1, sizeof(node));
+    if (root == NULL)
     {
-        hashtable[i] = NULL;
+        return false;
     }
+    
+    // Or use memset() to initialize both root->children[] = NULL and root->is_word false
+    root->is_word = false;
 
     // Open dictionary
     FILE *file = fopen(dictionary, "r");
@@ -53,32 +49,43 @@ bool load(const char *dictionary)
     }
 
     // Buffer for a word
-    char wordcurrent[LENGTH + 1];
+    char word[LENGTH + 1];
 
-    // Insert words into hash table
-    while (fscanf(file, "%s", wordcurrent) != EOF)
+    // Insert words into trie
+    while (fscanf(file, "%s", word) != EOF)
     {
         // TODO
-        // Find which linked list the word belongs to 
-        unsigned int firstchar = hash(wordcurrent);
+        // Get the number of characters composing the particular word
+        int n = strlen(word);
         
-        // Allocate node's memory for the new word
-        node *new_node = malloc(sizeof(node));
-        if (new_node == NULL)
+        // Create a mobile/movable node
+        node *root2 = root;
+        
+        // Iterate over the characters of the word and if necessary, create respective children nodes
+        for (int j = 0; j < n; j++)
         {
-            unload();
-            return false;
+            // Convert the character ASCII to array element's number
+            int i = (word[j] == '\'') ? 26 : tolower(word[j]) - 'a';
+            
+            // If the current character is pointing to null i.e. this character hasn't been used before 
+            if (root2->children[i] == NULL)
+            {
+                // Allocate memory for a new node containing an array
+                node *temp = calloc(1, sizeof(node));
+                temp->is_word = false;
+                
+                // The pointer from the current character is no longer pointing to null,
+                // it is now pointing towards the new node/array created
+                root2->children[i] = temp;
+            }
+            
+            // Change the starting point of the current pointer from pointing towards the current character 
+            // to pointing to the next array from this character
+            root2 = root2->children[i];
         }
         
-        // Copy the new word into the word's section of the new node crated
-        strcpy(new_node->word, wordcurrent);
-        
-        // See if there is anything hashtable[i] is pointing to
-        new_node->next = (hashtable[firstchar] == NULL) ? NULL : hashtable[firstchar];
-        
-        // Re-point hashtable[i] from the original node to the new inserted node
-        hashtable[firstchar] = new_node;
-        
+        // The characters of the word have been iterated successfully, the end of the word is reached
+        root2->is_word = true;
         counter_size++;
     }
 
@@ -98,52 +105,54 @@ unsigned int size(void)
     {
         return counter_size;
     }
-    else
-    {
-        return 0;
-    }
+    return 0;
 }
 
 // Returns true if word is in dictionary else false
 bool check(const char *word)
 {
     // TODO
-    // A new pointer pointing to the first node of the linked list the word belongs to
-    node *checker = hashtable[hash(word)];
+    int n = strlen(word);
     
-    // Compare the current word with words from nodes down the respective linked list
-    while (checker != NULL)
+    node *root2 = root;
+    
+    for (int j = 0; j < n; j++)
     {
-        if (strcasecmp(word, checker->word) == 0)
+        int i = (word[j] == '\'') ? 26 : tolower(word[j]) - 'a';
+        
+        root2 = root2->children[i];
+        
+        if (root2 == NULL)
         {
-            return true;
+           return false;
         }
-        checker = checker->next;
     }
+    if (root2->is_word)
+    {
+        return true;
+    }
+    
     return false;
+}
+
+
+void clear(node* root2)
+{
+    for (int i = 0; i < N; i++)
+    {
+        if (root2->children[i] != NULL)
+        {
+            clear(root2->children[i]);
+        }
+    }
+ 
+    free(root2);
 }
 
 // Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
 {
     // TODO
-    // Iterate over all the linked list (all the array's elements)
-    for (int i = 0; i < N; i++)
-    {
-        // A new pointer pointing to the first node of the linked list
-        node *unloader = hashtable[i];
-        // Iterating and freeing nodes down the linked list
-        while (unloader != NULL)
-        {
-            node *temp = unloader;
-            unloader = unloader->next;
-            free(temp);
-        }
-        // Check if successfully iterating over and finishing i == N - 1 linked lists
-        if (i == N - 1)
-        {
-            return true;
-        }
-    }
-    return false;
+    clear(root);
+    return true;
 }
