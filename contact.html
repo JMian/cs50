@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="styles.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+        </style>
+        <title>Contact</title>
+    </head>
+    
+    <body>
+         <div class="dropdown">
+            <img src="homeicon.png" alt="Home" onclick="dropFunction()" class="dropbtn">
+            <div id="myDropdown" class="dropdown-content">
+                <div class="contact">
+                    <a href="index.html">Home</a>
+                    <a href="AboutMe.html">About Me</a>
+                    <a href="projects.html">My Projects</a>
+                    <a href="lyrics.html">Favourite Lyrics</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+        
+        <header class="heading" style="padding-left: 80px; padding-bottom: 10px; padding-top: 10px">
+            Contact
+        </header>
+        
+        <p></p>
+        
+        <div class="body1">
+            If you have any comments, feedbacks, or just simply want to say hello, please leave a message! 
+            <p style="color: firebrick"><strong>Sorry! This feature is currently not available and shall be coming soon!</strong></p>
+        </div>
+        <p></p>
+        <img src="disappointed.jpg" alt="disappointed" id="disappointed">
+        
+        <div class="contactbox">
+            <div class="row">
+                <div class="column">
+                    <form method="get" name="messageform" action="comingsoon.html">
+                        <label for="fname">First Name</label>
+                        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                        <label for="lname">Last Name</label>
+                        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                        <label for="ctry">Country</label>
+                        <input type="text" id="ctry" name="country" placeholder="Which country are you from?">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="email" placeholder="Your email address">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="What would you like to let me know?" style="height:170px"></textarea>
+                        <input type="submit" name="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+
+       
+        <script src="jvscripts.js"></script>
+    </body>
+</html>
