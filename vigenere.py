@@ -9,12 +9,12 @@ from sys import argv
 
 def main():
     if len(argv) != 2:
-        print("Usage: python caesar.py str(alpha)")
+        print("Usage: python vigenere.py str(alpha)")
         sys.exit(1)
 
     # Check if the command line argument is a positive integer
     if argv[1].isalpha() == False:
-        print("Usage: python caesar.py str(alpha)")
+        print("Usage: python vigenere.py str(alpha)")
         sys.exit(1)
 
     keyword = argv[1]
