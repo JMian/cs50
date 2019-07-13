@@ -4,15 +4,13 @@ from cs50 import get_string
 import sys
 from sys import argv
 
-# Check how many command line arguments there are
-
-
 def main():
+    # Check how many command line arguments there are
     if len(argv) != 2:
         print("Usage: python vigenere.py str(alpha)")
         sys.exit(1)
 
-    # Check if the command line argument is a positive integer
+    # Check if the command line argument is composed entirely of alphabets
     if argv[1].isalpha() == False:
         print("Usage: python vigenere.py str(alpha)")
         sys.exit(1)
