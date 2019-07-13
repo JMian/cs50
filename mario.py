@@ -1,4 +1,4 @@
-# Problem Set 6, Mario(less), Python, 13 July 2019
+# Problem Set 6, Sentimental-Mario(less), Python, 13 July 2019
 
 from cs50 import get_int
 
