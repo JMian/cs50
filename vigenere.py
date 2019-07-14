@@ -4,6 +4,7 @@ from cs50 import get_string
 import sys
 from sys import argv
 
+
 def main():
     # Check how many command line arguments there are
     if len(argv) != 2:
