@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block main %}
-    <div style="width:260px">
+    <div class="fillform">
         <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
         <h1 class="mb-3">Form</h1>
 
@@ -14,12 +14,12 @@
 
             <br>
             <div class="form-group" style="padding-left:30px">
-                <input type="radio" name="gender" class="form-check-input" id="female" value ="Female"required>
-                <label for="female" class="form-check-label"> Female </label></br>
+                <input type="radio" name="gender" class="form-check-input" id="female" value ="Female" required>
+                <label for="female" class="form-check-label"> Female </label><br>
                 <input type="radio" name="gender" class="form-check-input" id="male" value="Male" required>
-                <label for="male" class="form-check-label"> Male </label></br>
+                <label for="male" class="form-check-label"> Male </label><br>
                 <input type="radio" name="gender" class="form-check-input" id="genderother" value="Other" required>
-                <label for="genderother" class="form-check-label"> Other </label></br>
+                <label for="genderother" class="form-check-label"> Other </label><br>
             </div>
 
             <select name="region" class="custom-select" required>
@@ -30,7 +30,7 @@
                 <option value="Europe">Europe</option>
                 <option value="Oceania">Oceania</option>
             </select>
-            <br></br>
+            <br><br/>
             <select name="qualification" class="custom-select" required>
                 <option disabled selected value="">Qualification</option>
                 <option value="Diploma">Diploma</option>
@@ -40,7 +40,7 @@
                 <option value="Professional Qualification">Professional Qualification</option>
                 <option value="Others">Others</option>
             </select>
-            <br></br>
+            <br><br/>
             <!-- http://getbootstrap.com/docs/4.1/components/buttons/ -->
             <button class="btn btn-primary" type="submit">Submit</button>
 
