@@ -1,6 +1,3 @@
-# Problem Set 7, Survey, 17 July 2019
-
-
 import cs50
 import csv
 
