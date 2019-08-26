@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <div style="width:260px">
+        <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+        <h1 class="mb-3">Form</h1>
+
+        <!-- http://getbootstrap.com/docs/4.1/components/forms/ -->
+        <form action="/form" method="post" class="needs-validation" novalidate>
+
+            <!-- TODO -->
+            First Name <input autocomplete="off" type="text" name="firstname" class="form-control" required>
+            Last Name <input autocomplete="off" type="text" name="lastname" class="form-control" required>
+
+            <br>
+            <div class="form-group" style="padding-left:30px">
+                <input type="radio" name="gender" class="form-check-input" id="female" value ="Female" required>
+                <label for="female" class="form-check-label"> Female </label><br>
+                <input type="radio" name="gender" class="form-check-input" id="male" value="Male" required>
+                <label for="male" class="form-check-label"> Male </label><br>
+                <input type="radio" name="gender" class="form-check-input" id="genderother" value="Other" required>
+                <label for="genderother" class="form-check-label"> Other </label><br>
+            </div>
+
+            <select name="region" class="custom-select" required>
+                <option disabled selected value="">Region</option>
+                <option value="Africa">Africa</option>
+                <option value="Americas">Americas</option>
+                <option value="Asia">Asia</option>
+                <option value="Europe">Europe</option>
+                <option value="Oceania">Oceania</option>
+            </select>
+            <br><br/>
+            <select name="qualification" class="custom-select" required>
+                <option disabled selected value="">Qualification</option>
+                <option value="Diploma">Diploma</option>
+                <option value="Bachelor's">Bachelor's</option>
+                <option value="Master's">Master's</option>
+                <option value="Doctorate">Doctorate</option>
+                <option value="Professional Qualification">Professional Qualification</option>
+                <option value="Others">Others</option>
+            </select>
+            <br><br/>
+            <!-- http://getbootstrap.com/docs/4.1/components/buttons/ -->
+            <button class="btn btn-primary" type="submit">Submit</button>
+
+        </form>
+
+        <script>
+          // Example starter JavaScript for disabling form submissions if there are invalid fields
+          (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+              var forms = document.getElementsByClassName('needs-validation');
+              // Loop over them and prevent submission
+              var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                  if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                  }
+                  form.classList.add('was-validated');
+                }, false);
+              });
+            }, false);
+          })();
+
+        </script>
+    </div>
+
+{% endblock %}

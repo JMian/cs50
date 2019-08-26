@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="styles.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Favourite Lyrics</title>
+    </head>
+    
+    <body>
+        <div class="dropdown">
+            <img src="homeicon.png" alt="Home" onclick="dropFunction()" class="dropbtn">
+            <div id="myDropdown" class="dropdown-content">
+                <div class="lyrics">
+                    <a href="index.html">Home</a>
+                    <a href="AboutMe.html">About Me</a>
+                    <a href="projects.html">My Projects</a>
+                    <a href="lyrics.html">Favourite Lyrics</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+        
+        <header class="heading" style="padding-left: 80px; padding-bottom: 10px; padding-top: 10px">
+        Favourite Lyrics
+        </header>
+
+        <!-- Use any element to open the sidenav -->
+       
+        <span style="cursor:pointer" onclick="openNav()" class="body1">
+            <h2>&#9776; Menu</h2>
+        </span>
+        
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <input type="text" id="mySearch" onkeyup="searchFunction()" placeholder="Search..">
+            <ul id="myMenu">
+                <li><a href="truecolours.html">True colours</a></li>
+                <li><a href="titanium.html">Titanium</a></li>
+                <li><a href="whenyoubelieve.html">When you believe</a></li>
+            </ul>
+        </div>
+        
+        <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+        <div class="mainlyrics">
+
+            <h1>Titanium</h1>
+            <h2>David Guetta</h2>
+            <p style="color:#741f57">You shout it out</br>
+            But I can't hear a word you say</br>
+            I'm talking loud not saying much</br>
+            I'm criticized but all your bullets ricochet</br>
+            You shoot me down, but I get up</p>
+          
+            <p style="color:#1f3f74">I'm bulletproof nothing to lose</br>
+            Fire away, fire away</br>
+            Ricochet, you take your aim</br>
+            Fire away, fire away</br>
+            You shoot me down but I won't fall, I am titanium</br>
+            You shoot me down but I won't fall</br>
+            I am titanium, I am titanium, I am titanium, I am titanium</p>
+            
+            <p style="color:#741f57">Cut me down</br>
+            But it's you who has further to fall</br>
+            Ghost town, haunted love</br>
+            Raise your voice, sticks and stones may break my bones</br>
+            I'm talking loud not saying much</p>
+            
+            <p style="color:#1f3f74">I'm bulletproof nothing to lose</br>
+            Fire away, fire away</br>
+            Ricochet, you take your aim</br>
+            Fire away, fire away</br>
+            You shoot me down but I won't fall</br>
+            I am titanium</br>
+            You shoot me down but I won't fall</br>
+            I am titanium, I am titanium</p>
+            
+            <p style="color:#741f57">Stone-hard, machine gun</br>
+            Firing at the ones who run</br>
+            Stone-hard, thus bulletproof glass</p>
+            
+            <p style="color:#1f3f74">You shoot me down but I won't fall, I am titanium</br>
+            You shoot me down but I won't fall, I am titanium</br>
+            You shoot me down but I won't fall, I am titanium</br>
+            You shoot me down but I won't fall, I am titanium</br>
+            I am titanium</p>
+
+        </div>
+        
+        <script src="jvscripts.js"></script>
+    </body>
+    
+  
+</html>
